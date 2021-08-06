@@ -1,0 +1,148 @@
+Level 00
+	Connect to SSH
+	ssh bandit5@bandit.labs.overthewire.org -p 2220
+	Password:bandit0
+	ls Check for the files, There is a file named readme
+	cat readme	
+				boJ9jbbUNNfktd78OOpsqOltutMc3MY1
+
+Level 1
+	try ls
+	you will see a file named -
+	normal cat wont work becuase it is not able to identify that - is name of a file 
+	so mention FULL NAME (ADDRESS)
+	cat ./-
+				CV1DtqXWVFXTvM2F0k09SHz0YwRINYA9
+
+Level 2
+	File name has spaces 
+	so press tab that will automatically adjust 
+	cat spaces\ in\ this\ filename 
+
+level3
+	File is hidden ls-a
+	Name of the file starts with a dot(BINDU)
+
+Level 4
+	Find the type of files in the given directory 
+				file ./*
+	Not the name starts with -
+	so, cat ./-file07
+				koReBOKuIDDepwhWk7jZC0RTdopnAYKh
+
+Level 5
+	Find the file of a specific length 
+	find -size 1033c
+	Cat it,
+		cat ./maybehere07/.file2
+		DXjZPULLxYr17uwoI01bNLQbtFemEgo7
+Level 6 
+	Find in /
+	find / -user bandit7 -group bandit6 -size 33c
+	see the location which has permission 
+	cat /var/lib/dpkg/info/bandit7.password
+				HKBPTKQnIay4Fw76bEy8PVxKEDQRKTzs
+Level 7 
+	Try cat but it is messed up, U will see entire Ramayan and Mahabharat
+	So grep the word millionth
+	cat data.txt  | grep millionth
+				cvX2JJa4CFALtqS87jk27qwqGhBM9plV
+Level 8
+	Normal cat/strings wont work so give an argument to print only unique line 
+	strings data.txt | sort |uniq -u
+				UsvVyFSfZZWbi6wgC7dAFyFuR6jQQUhR
+Level 9
+	along with strings grep =
+		strings data.txt | grep =			
+				truKLdjsbJ5g7yyJ2X2R0o3a5HQJFuLk
+Level 10 
+	Pass base 64 decode as angument
+	 cat data.txt | base64 --decode 
+
+	 			The password is IFukwKGsFW8MOq3IRFqrxE1hxTNEbUPR
+
+Level 11
+	cat data.txt
+	See the hint it is rot 13
+	so decode rot 13
+	cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m'
+				5Te8Y4drgCRfCx8ugdwuEX8KFC6k2EUu
+
+
+
+Level 12
+	xxd is used to get the hexdump, we need to reverse it 
+	Convert hexdump into filr 		
+						xxd -r data.txt > data 
+					
+	Now consider the type of file using file command
+	Then rename it accordingly 
+	gzip							.gz
+	bzip2							.bz2
+	POSIX tar archive (GNU)			.tar
+
+	gzip -d file.gz
+	bzip2 -d temp.bz2 
+	tar -xf archive.tar.gz
+
+					The password is 8ZjyCRiBWFYkneahHwxCv3wb2a1ORpYL
+
+
+Level 13 
+	It has a ssh keys,
+		ssh -i sshkey.private bandit14@localhost
+Now go the directory mentioned cat it 
+	cat /etc/bandit_pass/bandit14
+				4wcYUJFw0k0XLShlDzztnTBHiqxU3b3e
+
+Level 14 
+		Connect to bandit level 14, enter the password then connect to port 30000
+		nc localhost 30000
+		Enter the same password you will get a string
+
+					BfMYroe26WYalil77FoDi9qh59eK5xNr 
+
+Level 15 
+		we can connect with SSL with ncat 
+		ncat --ssl localhost 30001
+			
+		Correct!
+		cluFn7wTiGryunymYOu4RcffSxQluehd
+
+
+Level 16 
+		We need to find out what ports are active
+		nmap the given range
+		U will get 4 active ports try ncat --ssl on each
+		ncat --ssl localhost 31790
+
+		Use any text editor like sublime text,
+		Copy paste it
+		change the persions to 700
+		chmod 700 filnename.key
+		ssh bandit17@localhost -i pvt.key
+
+Level 17
+		diff passwords.old passwords.new
+
+		< w0Yfolrc5bwjS4qw5mq1nnQi6mF03bii
+		---
+		> kfBf3eYk5BPBRzwjqutbbfE887SVc5Yd
+
+
+		kfBf3eYk5BPBRzwjqutbbfE887SVc5Yd
+
+
+Level 18 
+		ssh -t bandit18@bandit.labs.overthewire.org -p 2220/bin/sh
+				IueksS7Ubh8G3DCwVzrTd8rAVOwq3M5x
+	man ssh | grep terminal
+     -T      Disable pseudo-terminal allocation.
+     -t      Force pseudo-terminal allocation.  This can be used to execute arbitrary screen-based programs on a remote machine, which can be very useful, e.g. when implementing menu services.  Mul‐
+     If an interactive session is requested ssh by default will only request a pseudo-terminal (pty) for interactive sessions when the client has one.  The flags -T and -t can be used to override
+     If a pseudo-terminal has been allocated the user may use the escape characters noted below.
+     If no pseudo-terminal has been allocated, the session is transparent and can be used to reliably transfer binary data.  On most systems, setting the escape character to “none” will also make
+     When a pseudo-terminal has been requested, ssh supports a number of functions through the use of an escape character.
+     SSH_ASKPASS           If ssh needs a passphrase, it will read the passphrase from the current terminal if it was run from a terminal.  If ssh does not have a terminal associated with it but
+
+Level 19 
